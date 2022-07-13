@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using SD_310_W22SD_Labs.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<ShopContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ContextClassName")));
 
 var app = builder.Build();
 

@@ -1,0 +1,19 @@
+﻿@model SD_310_W22SD_Labs.Models.Customer
+
+@{
+    ViewData["Title"] = "BuyRentalHours";
+}
+
+@using (@Html.BeginForm("BuyRentalHours", "Rentals"))
+{
+    <div>
+        @Html.LabelFor(m => m.Id, "Customer")
+        @Html.DropDownListFor(m => m.Id, new SelectList((ViewData["Customers"] as List<Customer>), "Id" , "Name"))
+    </div>
+    <div>
+        @Html.LabelFor(m => m.RentalHours, "Rental Hours")
+        @Html.TextBoxFor(m => m.RentalHours)
+    </div>
+
+    <input type="submit" />
+}

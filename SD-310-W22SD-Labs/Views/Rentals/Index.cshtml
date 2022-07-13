@@ -1,0 +1,68 @@
+﻿@model IEnumerable<SD_310_W22SD_Labs.Models.Rental>
+
+@{
+    ViewData["Title"] = "Rentals";
+}
+
+<h1>Rentals</h1>
+
+<p>
+    <a asp-action="Create">Rent</a>
+</p>
+<p>
+    <a asp-action="BuyRentalHours">Buy Rental Hours</a>
+</p>
+<p>
+    <a asp-action="Expired">Show Expired Rentals</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Equipment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RentalHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RentedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsCurrent)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Equipment.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RentalHours)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RentedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsCurrent)
+                </td>
+                <td>
+                    @using (@Html.BeginForm("EndRental", "Rentals", new { rentalId = item.Id }))
+                    {
+                        <input type="submit" value="EndRental" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
